@@ -15,10 +15,14 @@ services:
     build: .
     image: tui/meta-challenge:latest
     container_name: challenge
+    environment:
+      spring.data.mongodb.host: mongodb
     ports:
       - "8080:8080"
     depends_on:
       - mongodb
+    networks:
+      - mongo_network
 
 volumes:
   mongodb_data:
