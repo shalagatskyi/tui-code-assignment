@@ -7,6 +7,7 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.3.5"
     id("io.micronaut.aot") version "4.3.5"
+//    kotlin("kapt") version "1.9.22"
 }
 
 version = "0.1"
@@ -20,10 +21,21 @@ repositories {
 dependencies {
     ksp("io.micronaut:micronaut-http-validation")
     ksp("io.micronaut.serde:micronaut-serde-processor")
+    ksp("io.micronaut.data:micronaut-data-processor")
+    ksp("io.micronaut.data:micronaut-data-document-processor")
+
     implementation("io.micronaut.kotlin:micronaut-kotlin-runtime")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
+
     implementation("org.jetbrains.kotlin:kotlin-reflect:${kotlinVersion}")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
+    implementation("io.micronaut.data:micronaut-data-mongodb")
+    runtimeOnly("org.mongodb:mongodb-driver-sync")
+
+    // Annotation processors
+//    kapt("io.micronaut.data:micronaut-data-processor")
+//    kapt("io.micronaut:micronaut-inject-java")
+
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
