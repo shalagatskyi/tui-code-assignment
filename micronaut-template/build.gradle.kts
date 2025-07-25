@@ -7,7 +7,6 @@ plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.3.5"
     id("io.micronaut.aot") version "4.3.5"
-//    kotlin("kapt") version "1.9.22"
 }
 
 version = "0.1"
@@ -31,10 +30,6 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:${kotlinVersion}")
     implementation("io.micronaut.data:micronaut-data-mongodb")
     runtimeOnly("org.mongodb:mongodb-driver-sync")
-
-    // Annotation processors
-//    kapt("io.micronaut.data:micronaut-data-processor")
-//    kapt("io.micronaut:micronaut-inject-java")
 
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
