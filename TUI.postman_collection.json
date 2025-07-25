@@ -1,0 +1,129 @@
+{
+	"info": {
+		"_postman_id": "444926d5-8f10-40d5-ad66-c24987cbff5b",
+		"name": "TUI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10171737"
+	},
+	"item": [
+		{
+			"name": "Not found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/quotes/33",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"quotes",
+						"33"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET single quote",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/quotes/5eb17aadb69dc744b4e70d34",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"quotes",
+						"5eb17aadb69dc744b4e70d34"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET all quotes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/quotes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"quotes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET by author",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/quotes?author=victor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"quotes"
+					],
+					"query": [
+						{
+							"key": "author",
+							"value": "victor"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET by author with incorrect query param",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/quotes?author=v",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"quotes"
+					],
+					"query": [
+						{
+							"key": "author",
+							"value": "v"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
