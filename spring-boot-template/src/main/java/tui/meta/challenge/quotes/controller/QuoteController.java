@@ -1,15 +1,16 @@
 package tui.meta.challenge.quotes.controller;
 
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import tui.meta.challenge.quotes.controller.exceptions.QuoteNotFoundException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import tui.meta.challenge.quotes.controller.model.QuoteDto;
-import tui.meta.challenge.quotes.mapping.QuoteEntityToDtoFunc;
-import tui.meta.challenge.quotes.repository.QuoteRepository;
+import tui.meta.challenge.quotes.service.QuoteService;
 
 import java.util.List;
 
@@ -19,14 +20,11 @@ import java.util.List;
 @Validated
 public class QuoteController {
 
-    private final QuoteRepository quoteRepository;
-    private final QuoteEntityToDtoFunc quoteEntityToDtoFunc;
+    private final QuoteService quoteService;
 
     @GetMapping(path = "/{id}", produces = "application/json")
     public QuoteDto getQuote(@PathVariable(value = "id") String id) {
-        return quoteRepository.findById(id)
-                .map(quoteEntityToDtoFunc)
-                .orElseThrow(() -> new QuoteNotFoundException("quote with given id:" + id + " is missing"));
+        return quoteService.getSingleQuote(id);
     }
 
     @GetMapping(produces = "application/json")
@@ -36,10 +34,9 @@ public class QuoteController {
             @Size(min = 2, max = 100, message = "Author name must be between 2 and 100 characters.")
             String author) {
         if (author != null) {
-            String sanitizedAuthor = author.replaceAll("[^a-zA-Z0-9\\s]", "");
-            return quoteRepository.getQuoteByAuthorFullTextSearch(sanitizedAuthor).stream().map(quoteEntityToDtoFunc).toList();
+            return quoteService.getQuotesByAuthor(author);
         }
 
-        return quoteRepository.findAll().stream().map(quoteEntityToDtoFunc).toList();
+        return quoteService.getAllQuotes();
     }
 }

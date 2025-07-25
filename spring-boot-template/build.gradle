@@ -24,6 +24,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'jakarta.validation:jakarta.validation-api:3.1.1'
 	implementation 'org.hibernate.validator:hibernate-validator:8.0.1.Final'
+	implementation 'org.springframework.retry:spring-retry'
+	implementation 'org.aspectj:aspectjweaver'
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.testcontainers:mongodb:1.18.3'
